@@ -70,8 +70,8 @@ nano-banana-image-editor/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/nano-banana-image-editor.git
-cd nano-banana-image-editor
+git clone https://github.com/designestjay/AIAR-image-Editor.git
+cd AIAR-image-Editor
 ```
 
 ### 2. Deploy Backend to Railway
@@ -228,9 +228,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📧 **Email**: your-email@example.com
-- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/nano-banana-image-editor/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/nano-banana-image-editor/discussions)
+- 📧 **Email**: designestjay@example.com
+- 🐛 **Issues**: [GitHub Issues](https://github.com/designestjay/AIAR-image-Editor/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/designestjay/AIAR-image-Editor/discussions)
 
 ---
 
