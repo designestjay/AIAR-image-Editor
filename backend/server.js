@@ -209,6 +209,16 @@ app.get('/', (req, res) => {
 app.get('/test', (req, res) => {
     res.json({ 
         message: 'Backend is working!',
+        timestamp: new Date().toISOString(),
+        status: 'success'
+    });
+});
+
+// Simple API test endpoint
+app.post('/api/test', (req, res) => {
+    res.json({ 
+        message: 'API endpoint is working!',
+        received: req.body,
         timestamp: new Date().toISOString()
     });
 });
