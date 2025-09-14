@@ -199,7 +199,17 @@ app.get('/', (req, res) => {
     res.json({ 
         message: 'Nano Banana Backend API',
         version: '1.0.0',
-        endpoints: ['/api/enhance', '/api/upload-image', '/health']
+        endpoints: ['/api/enhance', '/api/upload-image', '/health'],
+        status: 'Running',
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Test endpoint
+app.get('/test', (req, res) => {
+    res.json({ 
+        message: 'Backend is working!',
+        timestamp: new Date().toISOString()
     });
 });
 
