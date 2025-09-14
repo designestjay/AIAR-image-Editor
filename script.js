@@ -19,7 +19,7 @@ const progressText = document.getElementById('progressText');
 // Global variables
 let selectedFile = null;
 // For demo purposes - replace with actual API endpoint
-const API_URL = 'https://cursor-playground-ab79a.web.app/api/enhance';
+const API_URL = 'https://aiar-image-editor.railway.app/api/enhance';
 
 // Demo mode flag - set to false when real API is available
 const DEMO_MODE = false;

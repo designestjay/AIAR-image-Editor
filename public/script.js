@@ -20,9 +20,8 @@ const progressText = document.getElementById('progressText');
 
 // Global variables
 let selectedFile = null;
-// API endpoint - using Firebase Functions for now
-// TODO: Replace with your deployed Railway backend URL when ready
-const API_URL = 'https://cursor-playground-ab79a.web.app/api/enhance';
+// API endpoint - using Railway backend
+const API_URL = 'https://aiar-image-editor.railway.app/api/enhance';
 
 // Demo mode flag - disabled, using real API
 const DEMO_MODE = false;
