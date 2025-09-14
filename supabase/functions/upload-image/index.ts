@@ -12,6 +12,8 @@ serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
+  // Allow public access - no authorization required
+
   try {
     // For now, return a sample image URL
     // In a real implementation, you'd handle file upload and upload to a CDN

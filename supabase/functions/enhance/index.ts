@@ -12,6 +12,8 @@ serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
+  // Allow public access - no authorization required
+
   try {
     // Parse request body
     const { prompt, image_urls, output_format = 'png', image_size = 'auto' } = await req.json()

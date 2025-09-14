@@ -309,6 +309,10 @@ async function uploadImageToCDN(file) {
         const backendUrl = 'https://vrckgepogdzdcodfcicv.supabase.co/functions/v1/upload-image';
         const response = await fetch(backendUrl, {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyY2tnZXBvZ2R6ZGNvZGZjaWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NzcwMzMsImV4cCI6MjA3MzQ1MzAzM30.irjT_DE0EeyLq8CG6F5U45EXDK1Xk52jwfVW1psP8yI`,
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyY2tnZXBvZ2R6ZGNvZGZjaWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NzcwMzMsImV4cCI6MjA3MzQ1MzAzM30.irjT_DE0EeyLq8CG6F5U45EXDK1Xk52jwfVW1psP8yI',
+            },
             body: formData
         });
         
@@ -361,7 +365,8 @@ async function realEnhancement() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`,
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyY2tnZXBvZ2R6ZGNvZGZjaWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NzcwMzMsImV4cCI6MjA3MzQ1MzAzM30.irjT_DE0EeyLq8CG6F5U45EXDK1Xk52jwfVW1psP8yI`,
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyY2tnZXBvZ2R6ZGNvZGZjaWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc4NzcwMzMsImV4cCI6MjA3MzQ1MzAzM30.irjT_DE0EeyLq8CG6F5U45EXDK1Xk52jwfVW1psP8yI',
             },
             body: JSON.stringify(requestData),
             signal: controller.signal
