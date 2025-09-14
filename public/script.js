@@ -252,17 +252,6 @@ async function enhanceImage() {
 // Simulate enhancement for demo purposes
 async function simulateEnhancement() {
     try {
-        // First upload the image to get a URL
-        const imageFormData = new FormData();
-        imageFormData.append('image', selectedFile);
-
-        // Upload image to get URL (in demo mode, we'll simulate this)
-        const imageUrl = await uploadImageForUrl(selectedFile);
-
-        // Get selected format and image size
-        const selectedFormat = document.querySelector('.format-option.active')?.dataset.format || 'png';
-        const selectedImageSize = imageSizeSelect.value || 'auto';
-        
         updateProgress(20, 'Processing image...');
         
         // Simulate processing time
@@ -283,11 +272,9 @@ async function simulateEnhancement() {
         // Use a sample result image for demo
         const demoImageUrl = "https://file.aiquickdraw.com/custom-page/akr/section-images/1756260298615p09gs2nz.webp";
         
-        // Display the result
-        setTimeout(() => {
-            displayResult(demoImageUrl);
-            showMessage('Demo: Image enhancement completed! (This is a sample result)', 'success');
-        }, 500);
+        // Display the result immediately
+        displayResult(demoImageUrl);
+        showMessage('Demo: Image enhancement completed! (This is a sample result)', 'success');
 
     } catch (error) {
         console.error('Demo enhancement error:', error);
@@ -440,14 +427,24 @@ async function realEnhancement() {
 
 // Display enhanced result
 function displayResult(imageUrl) {
-    resultImage.src = imageUrl;
-    resultImageWrapper.style.display = 'flex';
-    placeholderContent.style.display = 'none';
+    console.log('displayResult called with:', imageUrl);
+    console.log('resultImage element:', resultImage);
+    console.log('resultImageWrapper element:', resultImageWrapper);
+    console.log('downloadBtn element:', downloadBtn);
     
-    // Store the image URL for download
-    downloadBtn.onclick = () => downloadImage(imageUrl);
-    
-    showMessage('Image enhanced successfully!', 'success');
+    if (resultImage && resultImageWrapper && downloadBtn) {
+        resultImage.src = imageUrl;
+        resultImageWrapper.style.display = 'flex';
+        placeholderContent.style.display = 'none';
+        
+        // Store the image URL for download
+        downloadBtn.onclick = () => downloadImage(imageUrl);
+        
+        console.log('Result displayed successfully');
+        showMessage('Image enhanced successfully!', 'success');
+    } else {
+        console.error('Missing DOM elements:', { resultImage, resultImageWrapper, downloadBtn });
+    }
 }
 
 // Download image function
