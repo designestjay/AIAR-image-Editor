@@ -23,8 +23,8 @@ let selectedFile = null;
 // API endpoint - using Railway backend
 const API_URL = 'https://aiar-image-editor.railway.app/api/enhance';
 
-// Demo mode flag - disabled, using real API
-const DEMO_MODE = false;
+// Demo mode flag - enabled while troubleshooting Railway backend
+const DEMO_MODE = true;
 
 // API Key for authentication
 const API_KEY = '3f0a03e48875c3c6832e2f8c3858535d';
@@ -263,37 +263,31 @@ async function simulateEnhancement() {
         const selectedFormat = document.querySelector('.format-option.active')?.dataset.format || 'png';
         const selectedImageSize = imageSizeSelect.value || 'auto';
         
-        // Prepare API request with correct format
-        const requestData = {
-            prompt: promptInput.value || 'make it realistic',
-            image_urls: [imageUrl],
-            output_format: selectedFormat,
-            image_size: selectedImageSize,
-            demo_mode: 'true' // Tell server we're in demo mode
-        };
-
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`,
-            },
-            body: JSON.stringify(requestData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const result = await response.json();
-
-        if (result.image || result.output) {
-            const imageUrl = result.image || result.output;
-            displayResult(imageUrl);
-            showMessage('Demo: Image enhancement simulated successfully!', 'success');
-        } else {
-            throw new Error('No image URL received from demo server');
-        }
+        updateProgress(20, 'Processing image...');
+        
+        // Simulate processing time
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        updateProgress(50, 'Applying AI enhancement...');
+        
+        // Simulate more processing time
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        updateProgress(80, 'Finalizing result...');
+        
+        // Simulate final processing
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        updateProgress(100, 'Complete!');
+        
+        // Use a sample result image for demo
+        const demoImageUrl = "https://file.aiquickdraw.com/custom-page/akr/section-images/1756260298615p09gs2nz.webp";
+        
+        // Display the result
+        setTimeout(() => {
+            displayResult(demoImageUrl);
+            showMessage('Demo: Image enhancement completed! (This is a sample result)', 'success');
+        }, 500);
 
     } catch (error) {
         console.error('Demo enhancement error:', error);
