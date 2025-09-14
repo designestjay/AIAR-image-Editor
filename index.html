@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Banana Image Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nano Banana Image Editor</h1>
+            <p>Generate content using the Nano Banana Edit model</p>
+        </header>
+
+        <main>
+            <div class="input-output-container">
+                <div class="input-section">
+                    <div class="section-header">
+                        <h2>Input</h2>
+                        <div class="format-toggle">
+                            <button class="format-btn active" data-format="form">Form</button>
+                            <button class="format-btn" data-format="json">JSON</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-content" id="formContent">
+                        <div class="control-group">
+                            <label for="promptInput">prompt <span class="required">*</span></label>
+                            <textarea id="promptInput" placeholder="Describe how you want to edit your image..." rows="3">make it realistic</textarea>
+                            <p class="help-text">The prompt for image editing</p>
+                        </div>
+
+                        <div class="control-group">
+                            <label>image_urls <span class="required">*</span></label>
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-content">
+                                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                        <polyline points="14,2 14,8 20,8"></polyline>
+                                    </svg>
+                                    <p>Click to upload or drag and drop</p>
+                                    <p class="file-info">PNG, JPG, or WEBP (max 10MB)</p>
+                                    <button type="button" class="upload-btn">Select files</button>
+                                </div>
+                            </div>
+                            <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden>
+                            <div class="preview-section" id="previewSection" style="display: none;">
+                                <div class="file-preview">
+                                    <img id="previewImage" alt="Preview">
+                                    <button class="remove-btn" id="removeBtn">Remove</button>
+                                </div>
+                            </div>
+                            <p class="help-text">List of URLs of input images for editing, up to 5 images.</p>
+                        </div>
+
+                        <div class="control-group">
+                            <label>output_format</label>
+                            <div class="format-options">
+                                <button type="button" class="format-option active" data-format="png">PNG</button>
+                                <button type="button" class="format-option" data-format="jpeg">JPEG</button>
+                            </div>
+                            <p class="help-text">Output format for the images</p>
+                        </div>
+
+                        <div class="control-group">
+                            <label>image_size</label>
+                            <select id="imageSizeSelect">
+                                <option value="auto">Auto</option>
+                                <option value="1:1">Square</option>
+                                <option value="3:4">Portrait 3:4</option>
+                                <option value="9:16">Portrait 9:16</option>
+                                <option value="4:3">Landscape 4:3</option>
+                                <option value="16:9">Landscape 16:9</option>
+                            </select>
+                            <p class="help-text">Auto (default) is native resolution, while any other aspect ratio invokes an external reframe api and costs extra credits.</p>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button type="button" class="reset-btn">Reset</button>
+                            <button type="button" class="run-btn" id="enhanceBtn">
+                                <span class="btn-text">⭐ 2 Run</span>
+                                <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
+                            </button>
+                        </div>
+                        
+                        <div class="progress-container" id="progressContainer" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-text" id="progressText">Processing...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <div class="section-header">
+                        <h2>Output</h2>
+                        <div class="format-toggle">
+                            <button class="format-btn active">Preview</button>
+                            <button class="format-btn">JSON</button>
+                        </div>
+                    </div>
+                    
+                    <div class="output-content">
+                        <div class="output-type">
+                            <span>output type</span>
+                            <span class="type-badge">image</span>
+                        </div>
+                        
+                        <div class="result-container" id="resultSection">
+                            <img id="resultImage" alt="Generated output" style="display: none;">
+                            <div class="placeholder-content" id="placeholderContent">
+                                <p>Generated output will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by <a href="https://kie.ai/nano-banana?model=google%2Fnano-banana-edit" target="_blank">Nano Banana AI</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
