@@ -20,11 +20,11 @@ const progressText = document.getElementById('progressText');
 
 // Global variables
 let selectedFile = null;
-// API endpoint - using Railway backend
-const API_URL = 'https://aiar-image-editor.railway.app/api/enhance';
+// API endpoint - using Supabase Edge Functions
+const API_URL = 'https://vrckgepogdzdcodfcicv.supabase.co/functions/v1/enhance';
 
-// Demo mode flag - enabled while troubleshooting Railway backend
-const DEMO_MODE = true;
+// Demo mode flag - disabled, using real API
+const DEMO_MODE = false;
 
 // API Key for authentication
 const API_KEY = '3f0a03e48875c3c6832e2f8c3858535d';
@@ -306,7 +306,7 @@ async function uploadImageToCDN(file) {
         const formData = new FormData();
         formData.append('image', file);
         
-        const backendUrl = API_URL.replace('/api/enhance', '/api/upload-image');
+        const backendUrl = 'https://vrckgepogdzdcodfcicv.supabase.co/functions/v1/upload-image';
         const response = await fetch(backendUrl, {
             method: 'POST',
             body: formData

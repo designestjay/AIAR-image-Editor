@@ -1,20 +1,22 @@
+const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 
-module.exports = async (req, res) => {
-    // Enable CORS
-    res.setHeader('Access-Control-Allow-Origin', 'https://cursor-playground-ab79a.web.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
-    
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-    
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Enable CORS for all routes
+app.use(cors({ 
+    origin: ['https://cursor-playground-ab79a.web.app'],
+    credentials: true
+}));
+
+// Parse JSON bodies
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// Main enhancement endpoint
+app.post('/api/enhance', async (req, res) => {
     try {
         // Validate required fields
         if (!req.body.prompt || !req.body.image_urls || !Array.isArray(req.body.image_urls)) {
@@ -129,4 +131,27 @@ module.exports = async (req, res) => {
             details: error.message
         });
     }
-};
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({ 
+        status: 'OK', 
+        timestamp: new Date().toISOString(),
+        service: 'Nano Banana Backend'
+    });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+    res.json({ 
+        message: 'Nano Banana Backend API',
+        version: '1.0.0',
+        endpoints: ['/api/enhance', '/health']
+    });
+});
+
+app.listen(port, () => {
+    console.log(`🚀 Nano Banana Backend running on port ${port}`);
+    console.log(`📡 API endpoints available at http://localhost:${port}`);
+});
